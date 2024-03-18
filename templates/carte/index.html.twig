@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CarteController!{% endblock %}
+{% block stylesheets %}
+   <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    
+
+    <!-- Custom styles for this page -->
+    <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">CARTES</h1>
+                    <p class="mb-4">LES CARTE DISPONIBLE DANS LA BASE DE DONNEES <a target="_blank"
+                            href="">site de yugioh</a>.</p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Nom</th>
+                                            <th>Categorie</th>
+                                            <th>Attribut</th>
+                                            <th>Type</th>
+                                            <th>Niveau</th>
+                                            <th>Specificite</th>
+                                            <th>carteATK</th>
+                                            <th>carteDEF</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                     {% for carte in cartes %}
+                                             <tr>
+                                            <td><img
+                                                src="{{carte.getCarteImage}}"
+                                                class="img-fluid rounded-top w-100 h-20"
+                                                alt=""
+                                            /> 
+                                            </td>
+                                            <td>{{ carte.getCarteNom }}</td>
+                                            <td>{{ carte.getCarteCategorie }}</td>
+                                            <td>{{ carte.getCarteAttribut }}</td>
+                                            <td>{{ carte.getCarteType }}</td>
+                                            <td>{{ carte.getCarteNiveau }}</td>
+                                            <td>{{ carte.getCarteSpecificite }}</td>
+                                            <td>{{ carte.getCarteATK }}</td>
+                                            <td>{{ carte.getCarteDEF }}</td>
+                                            <td>{{ carte.getCarteDescription[:100] }}</td>
+                                        </tr>
+                                       
+                                        {% endfor %}
+                           
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                 
+                <!-- /.container-fluid -->
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
+
+{% endblock %}
