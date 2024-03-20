@@ -1,20 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EditionController!{% endblock %}
-
+{% block title %}Hello CarteController!{% endblock %}
+{% block stylesheets %}
+  
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+ <div id="layoutSidenav">
+            
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">EDITIONS</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.html">collection</a></li>
+                            <li class="breadcrumb-item active">edition</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                               
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                liste des toutes les EDITIONS
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom edition</th>
+                                            <th>Date</th>
+                                            <th>details</th>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                           <th>Nom Edition</th>
+                                            <th>Date</th>
+                                            <th>details</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for edition in editions %}
+                                            <tr>
+                                               
+                                                <td>{{ edition.getNomEdition() }}</td>
+                                                <td>{{ edition.getDateEdition()|date('Y-m-d') }}</td>
+                                                <td>
+                                                
+                                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('edition_carte', {'id': edition.getId}) }}'">
+                                                    voir plus
+                                                </button>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+               
+            </div>
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/mouhamed/Desktop/univ havre/.SEM2/PROG WEB/crud_yugioh/src/Controller/EditionController.php</code></li>
-        <li>Your template at <code>C:/Users/mouhamed/Desktop/univ havre/.SEM2/PROG WEB/crud_yugioh/templates/edition/index.html.twig</code></li>
-    </ul>
-</div>
+{% endblock %}
+
+{% block javascripts %}
+   
+
 {% endblock %}

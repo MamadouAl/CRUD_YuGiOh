@@ -24,18 +24,6 @@ class Langue
         return $this->id;
     }
 
-    // public function getNumLangue(): ?int
-    // {
-    //     return $this->num_langue;
-    // }
-
-    // public function setNumLangue(int $num_langue): static
-    // {
-    //     $this->num_langue = $num_langue;
-
-    //     return $this;
-    // }
-
     public function getNomLangue(): ?string
     {
         return $this->nom_langue;

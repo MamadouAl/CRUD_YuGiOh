@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CarteController extends AbstractController
 {
-    #[Route('/cartes', name: 'app_homepage')]
+    #[Route('/cartes', name: 'cartes')]
     public function index(EntityManagerInterface $em): Response
     {
         $cartes = $em->getRepository(Carte::class)->findAll();
@@ -21,12 +21,10 @@ class CarteController extends AbstractController
         ]);
     }
 
-     #[Route('/cartes/{id}', name: 'carte_show')]
+     #[Route('/cartes/{id}', name: 'detail_carte')]
     public function show($id, EntityManagerInterface $em): Response
     {
         $carte = $em->getRepository(Carte::class)->find($id);
-
-        // dd($carte);
         if (!$carte) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id

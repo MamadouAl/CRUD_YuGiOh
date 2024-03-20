@@ -1,19 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CarteController!{% endblock %}
+{% block title %}edition{% endblock %}
 {% block stylesheets %}
   
 {% endblock %}
 {% block body %}
- <div id="layoutSidenav">
-            
+ <div id="layoutSidenav">      
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">CARTES</h1>
+                        <h1 class="mt-4">EDITIONS - {{edition.getNomEdition()}}</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">collection</a></li>
-                            <li class="breadcrumb-item active">cartes</li>
+                            <li class="breadcrumb-item"><a href="index.html">Edition</a></li>
+                            <li class="breadcrumb-item active">edition {{edition.getNomEdition()}}</li>
+                           
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -23,7 +24,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                liste des toutes les cartes
+                                liste des toutes les cartes de l'edition {{edition.getNomEdition()}}
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -35,10 +36,8 @@
                                             <th>Attribut</th>
                                             <th>Type</th>
                                             <th>Niveau</th>
-                                            <th>Specificité</th>
-                                            <th> ATK</th>
-                                            <th>DEF</th>
-                                            <th>Description</th>
+                                            
+                                            <th>Rarete</th>
                                             <th>details</th>
 
                                         </tr>
@@ -51,28 +50,22 @@
                                             <th>Attribut</th>
                                             <th>Type</th>
                                             <th>Niveau</th>
-                                            <th>Specificité</th>
-                                            <th> ATK</th>
-                                            <th>DEF</th>
-                                            <th>Description</th>
+                                            <th>Rarete</th>
                                             <th>details</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         {% for carte in cartes %}
                                             <tr>
-                                                <td><img src="{{ carte.getCarteImage() }}" class="img-fluid rounded-top" alt="" style="width: 100px; height: 100px;"></td>
-                                                <td>{{ carte.getCarteNom() }}</td>
-                                                <td>{{ carte.getCarteCategorie() }}</td>
-                                                <td>{{ carte.getCarteAttribut() }}</td>
-                                                <td>{{ carte.getCarteType() }}</td>
-                                                <td>{{ carte.getCarteNiveau() }}</td>
-                                                <td>{{ carte.getCarteSpecificite() }}</td>
-                                                <td>{{ carte.getCarteATK() }}</td>
-                                                <td>{{ carte.getCarteDEF() }}</td>
-                                                <td>{{ carte.getCarteDescription()[:100] }}</td>
+                                                <td><img src="{{carte.getCarte().getCarteImage()}}" class="img-fluid rounded-top" alt="" style="width: 100px; height: 100px;"></td>
+                                                <td>{{ carte.getCarte().getCarteNom() }}</td>
+                                                <td>{{ carte.getCarte().getCarteCategorie() }}</td>
+                                                <td>{{ carte.getCarte().getCarteAttribut() }}</td>
+                                                <td>{{ carte.getCarte().getCarteType() }}</td>
+                                                <td>{{ carte.getCarte().getCarteNiveau() }}</td>
+                                                 <td>{{ carte.getRarete()}}</td>
                                                 <td>
-                                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getId}) }}'">
+                                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getCarte().getId}) }}'">
                                                     voir plus
                                                 </button>
                                                 

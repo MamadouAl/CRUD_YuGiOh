@@ -43,7 +43,9 @@ class Carte
     #[ORM\Column(nullable: true)]
     private ?int $carte_DEF = null;
 
-    #[ORM\Column(nullable: true)]
+   /**
+     * @ORM\Column(type="text", nullable=true)
+     */
     private ?string $carte_description = null;
 
     public function getId(): ?int

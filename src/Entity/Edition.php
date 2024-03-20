@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\EditionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EditionRepository::class)]
 class Edition
 {
+   
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -63,4 +66,20 @@ class Edition
 
         return $this;
     }
+    #[ORM\OneToMany(mappedBy: 'edition', targetEntity: CarteEdition::class)]
+    private Collection $carteEditions;
+
+    public function __construct()
+    {
+        $this->carteEditions = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|CarteEdition[]
+     */
+    public function getCarteEditions(): Collection
+    {
+        return $this->carteEditions;
+    }
+   
 }

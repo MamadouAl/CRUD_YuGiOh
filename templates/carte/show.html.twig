@@ -1,8 +1,103 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ parent() }} - Edit{% endblock %}
+{% block title %}details{% endblock %}
 
 {% block body %}
-    <h1>Edit Carte {{carte.getCarteNom}} </h1>
+    
+ <div id="layoutSidenav">
+            
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">DETAILS DE LA CARTES</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.html">collection</a></li>
+                            <li class="breadcrumb-item"><a href="index.html">cartes</a></li>
+                            <li class="breadcrumb-item active">{{carte.getCarteNom()}}</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                               
+                            </div>
+                        </div>
+                        {# separer la colonne en dux l'un 5 l'autre 7 ne rien mettre dedans #}
+                      
+                            <div class="card-header">
+                                <i class="fas fa-chart-area me-1"></i>
+                                Details de la carte
+                            </div>
+                            <div class="row">
+                            <div class="col-6">
+                            <div class="d-flex justify-content-center align-items-center mt-3 mb-5"> 
+                           
+                               <img src="{{carte.getCarteImage()}}" class="img-fluid rounded-top" alt="">
+                                        
+                            </div>
+                            </div>
+                            
+                            <div class="col-6">
+                            <div class="mt-5">
+                                     {# afficher toutes les informations de la carte dans un tableau  #}
+                                <table class="table table-bordered table-striped table-hover">
+                                    <tr>
+                                        <th>Nom</th>
+                                        <td>{{carte.getCarteNom()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Categorie</th>
+                                        <td>{{carte.getCarteCategorie()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Attribut</th>
+                                        <td>{{carte.getCarteAttribut()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Type</th>
+                                        <td>{{carte.getCarteType()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Niveau</th>
+                                        <td>{{carte.getCarteNiveau()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Specificite</th>
+                                        <td>{{carte.getCarteSpecificite()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ATK</th>
+                                        <td>{{carte.getCarteATK()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DEF</th>
+                                        <td>{{carte.getCarteDEF()}}</td>
+                                    </tr>
+                                    
+                                    </table>
+
+                            </div>
+                            </div>
+                            <table class="table table-bordered table-striped table-hover">
+                            <tr>
+                                        <th>Description</th>
+                                        <td>{{carte.getCarteDescription()}}</td>
+                                    </tr>
+                            </table>
+                           
+                            
+                     
+
+                      {# <img
+                        src="{{carte.getCarteImage()}}"
+                        class="img-fluid rounded-top"
+                        alt=""
+                      /> #}
+                      
+                    </div>
+                </main>
+               
+            </div>
+        </div>
+
+
 
   
 

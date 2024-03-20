@@ -1,20 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LangueController!{% endblock %}
-
+{% block title %}Hello CarteController!{% endblock %}
+{% block stylesheets %}
+  
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+ <div id="layoutSidenav">
+            
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">LANGUES</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="">collection</a></li>
+                            <li class="breadcrumb-item active">langues</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                               
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                liste des toutes les langues
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Numero</th>
+                                            <th>Nom</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                           <th>Numero</th>
+                                            <th>Nom</th>
+                                            
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for langue in langues %}
+                                            <tr>
+                                               
+                                                <td>{{ langue.getId() }}</td>
+                                                <td>{{ langue.getNomLangue() }}</td>
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+               
+            </div>
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% endblock %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/mouhamed/Desktop/univ havre/.SEM2/PROG WEB/crud_yugioh/src/Controller/LangueController.php</code></li>
-        <li>Your template at <code>C:/Users/mouhamed/Desktop/univ havre/.SEM2/PROG WEB/crud_yugioh/templates/langue/index.html.twig</code></li>
-    </ul>
-</div>
+{% block javascripts %}
+   
+
 {% endblock %}
