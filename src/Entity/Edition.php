@@ -72,6 +72,7 @@ class Edition
     public function __construct()
     {
         $this->carteEditions = new ArrayCollection();
+        $this->cartePossedee = new ArrayCollection();
     }
 
     /**
@@ -80,6 +81,11 @@ class Edition
     public function getCarteEditions(): Collection
     {
         return $this->carteEditions;
+    }
+
+    public function getCartePossedee(): Collection
+    {
+        return $this->cartePossedee;
     }
    
 }

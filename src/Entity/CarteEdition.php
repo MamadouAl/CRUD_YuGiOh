@@ -54,4 +54,5 @@ class CarteEdition
         $this->rarete = $rarete;
         return $this;
     }
+
 }

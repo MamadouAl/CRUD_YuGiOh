@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Carte;
+use App\Entity\Edition;
+use App\Repository\CarteEditionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,10 +23,14 @@ class CarteController extends AbstractController
         ]);
     }
 
-     #[Route('/cartes/{id}', name: 'detail_carte')]
-    public function show($id, EntityManagerInterface $em): Response
+    #[Route('/cartes/{id}', name: 'detail_carte')]
+    public function show($id, EntityManagerInterface $em, CarteEditionRepository $carteEditionRepository): Response
     {
         $carte = $em->getRepository(Carte::class)->find($id);
+        $idEdition = $carte  -> getEditionId($em, $carteEditionRepository);
+        $edition = $em->getRepository(Edition::class)->find($idEdition);
+       // dd($edition->getNomEdition());
+
         if (!$carte) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
@@ -32,6 +38,7 @@ class CarteController extends AbstractController
         }
         return $this->render('carte/show.html.twig', [
             'carte' => $carte,
+            'edition' => $edition,
         ]);
     }
 }

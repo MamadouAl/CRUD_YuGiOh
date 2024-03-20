@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Repository\CarteEditionRepository;
 use App\Repository\CarteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CarteRepository::class)]
@@ -43,9 +45,7 @@ class Carte
     #[ORM\Column(nullable: true)]
     private ?int $carte_DEF = null;
 
-   /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+   #[ORM\Column(length: 200000, nullable: true)]
     private ?string $carte_description = null;
 
     public function getId(): ?int
@@ -183,5 +183,18 @@ class Carte
         $this->carte_description = $carte_description;
 
         return $this;
+    }
+
+    //methode qui permet de renvoyer l'id de l'edition de la carte
+    public function getEditionId(EntityManagerInterface $em, CarteEditionRepository $carteEditionRepository): ?int
+    {
+        $carteEdition = $carteEditionRepository->findOneBy(['carte' => $this->getId()]);
+        if ($carteEdition) {
+            $edition = $carteEdition->getEdition();
+            if ($edition) {
+                return $edition->getId();
+            }
+        }
+        return null;
     }
 }

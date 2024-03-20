@@ -21,6 +21,17 @@ class CarteEditionRepository extends ServiceEntityRepository
         parent::__construct($registry, CarteEdition::class);
     }
 
+    public function findByCarteId($carteId) : array
+    {
+        return $this->createQueryBuilder('ce')
+            ->andWhere('ce.carte = :carteId')
+            ->setParameter('carteId', $carteId)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
 //    /**
 //     * @return CarteEdition[] Returns an array of CarteEdition objects
 //     */
