@@ -21,22 +21,22 @@ class CartePossedeeController extends AbstractController
         ]);
     }
 
-    #[Route('/insert/{carteId}/{editionId}/{langueId}', name: 'insert_collection')]
-    public function insert(int $carteId, int $editionId, int $langueId, EntityManagerInterface $em): Response
+    #[Route('/insert/', name: 'insert_collection')]
+    public function insert(EntityManagerInterface $em): Response
     {
-        $carte = $em->getRepository(Carte::class)->find($carteId);
-        $edition = $em->getRepository(Edition::class)->find($editionId);
-        $langue = $em->getRepository(Langue::class)->find($langueId);
+        $carte = $em->getRepository(Carte::class)->find(500);
+        $edition = $em->getRepository(Edition::class)->find(1);
+        $langue = $em->getRepository(Langue::class)->find(2);
 
         if (!$carte || !$edition || !$langue) {
-            throw $this->createNotFoundException('No card, edition or language found for given id');
+            throw $this->createNotFoundException('Pas de carte, d\'édition ou de langue trouvée pour l\'id donné');
         }
 
         $collection = new CartePossedee();
         $collection->setCarte($carte);
         $collection->setEdition($edition);
         $collection->setLangue($langue);
-        $collection->setQuantite(1);
+        $collection->setQuantite(10);
 
         $em->persist($collection);
         $em->flush();
@@ -45,17 +45,47 @@ class CartePossedeeController extends AbstractController
     }
 
     //update
-    #[Route('/update/{carteId}/{editionId}/{langueId}', name: 'update_collection')]
-    public function update(int $carteId, int $editionId, int $langueId, EntityManagerInterface $em): Response
+    #[Route('/update/{carte_id}/{edition_id}/{langue_id}', name: 'update_collection')]
+    public function update(int $carte_id, int $edition_id, int $langue_id, EntityManagerInterface $em): Response
     {
-        $carte = $em->getRepository(Carte::class)->find($carteId);
-        $edition = $em->getRepository(Edition::class)->find($editionId);
-        $langue = $em->getRepository(Langue::class)->find($langueId);
+        //recuperer la carte possedee et fonctions des id de la carte, de l'edition et de la langue
+        $cartePossedee = $em->getRepository(CartePossedee::class)->findOneBy([
+            'carte' => $carte_id,
+            'edition' => $edition_id,
+            'langue' => $langue_id
+        ]);
 
-        //...
-
+        //si la carte possedee n'existe pas
+        if (!$cartePossedee) {
+            throw $this->createNotFoundException('Pas de carte possedee trouvée pour l\'id donné');
+        }
+        //modifier la quantite
+        $cartePossedee->setQuantite(20);
+        $em->persist($cartePossedee);
+        $em->flush();
         return $this->redirectToRoute('home');
     }
 
+    //delete
+    #[Route('/delete/{carte_id}/{edition_id}/{langue_id}', name: 'delete_collection')]
+    public function delete(int $carte_id, int $edition_id, int $langue_id, EntityManagerInterface $em): Response
+    {
+        //recuperer la carte possedee et fonctions des id de la carte, de l'edition et de la langue
+        $cartePossedee = $em->getRepository(CartePossedee::class)->findOneBy([
+            'carte' => 500,
+            'edition' => 1,
+            'langue' => 2
+        ]);
 
+        //si la carte possedee n'existe pas
+        $cartePossedee = $em->getRepository(CartePossedee::class)->findOneBy([
+            'carte' => $carte_id,
+            'edition' => $edition_id,
+            'langue' => $langue_id
+        ]);
+        //supprimer la carte possedee
+        $em->remove($cartePossedee);
+        $em->flush();
+        return $this->redirectToRoute('home');
+    }
 }
