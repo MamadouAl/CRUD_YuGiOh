@@ -16,7 +16,7 @@
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body">MAGIE</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                       <h4>nombre</h4>
+                                       <h4>{{nbCarteMagie}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                                     <div class="card-body">MONSTRE</div>
                                     
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <h4>nombre</h4>
+                                        <h4>{{nbCarteMonstre}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                 <div class="card bg-danger text-white mb-4">
                                     <div class="card-body">PIEGE</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                       <h4>nombre</h4>
+                                       <h4>{{nbCartePiege}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                         <tr>
                                             <th>Image</th>
                                             <th>Nom</th>
-                                            <th>Categorie</th>
+                                            <th>Langue</th>
                                             <th>Edition</th>
                                             <th>Quantite</th>
                                             <th>Autres</th>
@@ -61,37 +61,27 @@
                                         <tr>
                                             <th>Image</th>
                                             <th>Nom</th>
-                                            <th>Categorie</th>
+                                            <th>Langue</th>
                                             <th>Edition</th>
                                             <th>Quantite</th>
                                             <th>Autres</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                    {% for carte in cartes %}
                                         <tr>
-                                            <td>image</td>
-                                            <td>nom</td>
-                                            <td>categorie</td>
-                                            <td>edition</td>
-                                            <td>Quantite</td>
+                                            <td> <img src="{{carte.getCarte().getCarteImage()}}"class="img-fluid rounded-top" alt="" style="width: 60px; height: 90px;" />
+                                            </td>
+                                            <td>{{carte.getCarte().getCarteNom()}}</td>
+                                            <td>{{carte.getLangue().getNomLangue()}}</td>
+                                            <td>{{carte.getEdition().getNomEdition()}}</td>
+                                            <td>{{carte.getQuantite}}</td>
                                             <td>
-                                            <button
-                                                type="button"
-                                                class="btn btn-primary"
-                                            >
-                                                voir plus
-                                            </button>
-                                            <button
-                                                type="button"
-                                                class="btn btn-danger"
-                                            >
-                                                supprimer
-                                            </button>
-                                            
-                                            
+                                            <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getCarte().getId()}) }}'">voir plus</button>
+                                            <button type="button" onclick="window.location.href = '{{ path('delete_collection', {'carte_id': carte.getCarte().getId(),'edition_id':carte.getEdition().getId,'langue_id':carte.getLangue().getId()}) }}'" class="btn btn-danger">supprimer</button>
                                             </td>
                                         </tr>
-                                   
+                                    {% endfor %} 
                                     </tbody>
                                 </table>
                             </div>

@@ -33,7 +33,7 @@ class CartePossedee
         return $this->carte;
     }
 
-    public function setCarte(Carte $carte): static
+    public function setCarte(?Carte $carte): static
     {
         $this->carte = $carte;
 
@@ -45,7 +45,7 @@ class CartePossedee
         return $this->edition;
     }
 
-    public function setEdition(Edition $edition): static
+    public function setEdition(?Edition $edition): static
     {
         $this->edition = $edition;
 
@@ -57,7 +57,7 @@ class CartePossedee
         return $this->langue;
     }
 
-    public function setLangue(Langue $langue): static
+    public function setLangue(?Langue $langue): static
     {
         $this->langue = $langue;
 
