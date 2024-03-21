@@ -23,7 +23,7 @@ class CarteController extends AbstractController
         ]);
     }
 
-     #[Route('/cartes/insert', name: 'insert_carte')]
+     #[Route('/carte/insert', name: 'insert_carte')]
     public function insert(EntityManagerInterface $em): Response
 {
     $carte = new Carte();
@@ -42,11 +42,10 @@ class CarteController extends AbstractController
     $em->persist($carte);
     $em->flush();
 
-    // retourer la route precedente
     return $this->redirectToRoute('cartes');
   
 }
-    #[Route('/cartes/{id}', name: 'detail_carte')]
+    #[Route('/carte/{id}', name: 'detail_carte')]
     public function show($id, EntityManagerInterface $em, CarteEditionRepository $carteEditionRepository): Response
     {
         $carte = $em->getRepository(Carte::class)->find($id);
