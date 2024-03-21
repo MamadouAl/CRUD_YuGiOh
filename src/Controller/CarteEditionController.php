@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarteEditionController extends AbstractController
 {
-    #[Route('/editions/{id}', name: 'edition_carte')]
+    #[Route('/edition/{id}', name: 'edition_carte')]
     public function showEditionDetail($id, EntityManagerInterface $em): Response
     {
 
@@ -30,4 +30,5 @@ class CarteEditionController extends AbstractController
             'langues' => $langues,
         ]);
     }
+   
 }

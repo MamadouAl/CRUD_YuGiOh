@@ -42,14 +42,13 @@ class EditionController extends AbstractController
         return $this->redirectToRoute('editions');
     }
 
-    #[Route('/editions/update/{id}', name: 'update_edition')]
+    #[Route('/edition/update/{id}', name: 'update_edition')]
     public function update($id, EntityManagerInterface $em): Response
     {
         $edition = $em->getRepository(Edition::class)->find($id);
-        $edition->setNomEdition('Edition 2');
+        $edition->setNomEdition('Batailles des Légendes : La Vengeance Monstrueuse');
         $em->persist($edition);
         $em->flush();
         return $this->redirectToRoute('editions');
     }
-
 }

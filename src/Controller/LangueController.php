@@ -40,8 +40,8 @@ class LangueController extends AbstractController
             );
         }
         return dd($langue->getNomLangue());
-
     }
+
     #[Route('/langue/delete/{id}', name: 'delete_langue')]
     public function delete($id, EntityManagerInterface $em): Response
     {
@@ -50,7 +50,6 @@ class LangueController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('langues');
     }
-
 
     #[Route('/langue/update/{id}', name: 'update_langue')]
     public function update($id, EntityManagerInterface $em): Response
@@ -61,5 +60,4 @@ class LangueController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('langues');
     }
-    
 }

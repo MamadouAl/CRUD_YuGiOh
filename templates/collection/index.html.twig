@@ -3,5 +3,103 @@
 {% block title %}Ma Collection{% endblock %}
 
 {% block body %}
+ <div id="layoutSidenav">   
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Collection</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Ma Collection de cartes Yu-Gi-Oh</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">MAGIE</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                       <h4>nombre</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">MONSTRE</div>
+                                    
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <h4>nombre</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4  col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">PIEGE</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                       <h4>nombre</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                       
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                               Liste de ma collection de Cartes Yu-Gi-Oh
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Nom</th>
+                                            <th>Categorie</th>
+                                            <th>Edition</th>
+                                            <th>Quantite</th>
+                                            <th>Autres</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Nom</th>
+                                            <th>Categorie</th>
+                                            <th>Edition</th>
+                                            <th>Quantite</th>
+                                            <th>Autres</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td>image</td>
+                                            <td>nom</td>
+                                            <td>categorie</td>
+                                            <td>edition</td>
+                                            <td>Quantite</td>
+                                            <td>
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary"
+                                            >
+                                                voir plus
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-danger"
+                                            >
+                                                supprimer
+                                            </button>
+                                            
+                                            
+                                            </td>
+                                        </tr>
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                
+            </div>
+        </div>
    
 {% endblock %}
