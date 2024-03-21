@@ -101,7 +101,7 @@ class CarteController extends AbstractController
     public function update($id, EntityManagerInterface $em): Response
     {
         $carte = $em->getRepository(Carte::class)->find($id);
-        $carte->setCarteNom('new carte');
+        $carte->setCarteNom('new carte 2024');
         $carte->setCarteCategorie('monstre');
         $carte->setCarteAttribut('tenebre');
         $carte->setCarteImage('https://www.otk-expert.fr/cartes/yugioh_ext/BLMR/BLMR-1q.jpg');

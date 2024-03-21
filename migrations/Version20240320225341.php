@@ -20,7 +20,15 @@ final class Version20240320225341 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE carte_possedee (carte_id INT NOT NULL, edition_id INT NOT NULL, langue_id INT NOT NULL, quantite INT NOT NULL, INDEX IDX_6AD38973C9C7CEB6 (carte_id), INDEX IDX_6AD3897374281A5E (edition_id), INDEX IDX_6AD389732AADBACD (langue_id), PRIMARY KEY(carte_id, edition_id, langue_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $tableOptions = '';
+        if ($this->connection->getDatabasePlatform()->getName() == 'mysql') {
+            $tableOptions = ' DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB';
+        }
+
+        $this->addSql('CREATE TABLE carte_possedee (carte_id INT NOT NULL, edition_id INT NOT NULL, langue_id INT NOT NULL, quantite INT NOT NULL, PRIMARY KEY(carte_id, edition_id, langue_id))' . $tableOptions);
+        $this->addSql('CREATE INDEX IDX_6AD38973C9C7CEB6 ON carte_possedee (carte_id)');
+        $this->addSql('CREATE INDEX IDX_6AD3897374281A5E ON carte_possedee (edition_id)');
+        $this->addSql('CREATE INDEX IDX_6AD389732AADBACD ON carte_possedee (langue_id)');
         $this->addSql('ALTER TABLE carte_possedee ADD CONSTRAINT FK_6AD38973C9C7CEB6 FOREIGN KEY (carte_id) REFERENCES carte (id)');
         $this->addSql('ALTER TABLE carte_possedee ADD CONSTRAINT FK_6AD3897374281A5E FOREIGN KEY (edition_id) REFERENCES edition (id)');
         $this->addSql('ALTER TABLE carte_possedee ADD CONSTRAINT FK_6AD389732AADBACD FOREIGN KEY (langue_id) REFERENCES langue (id)');
