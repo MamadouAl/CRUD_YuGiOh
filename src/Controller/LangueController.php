@@ -20,7 +20,7 @@ class LangueController extends AbstractController
         ]);
     }
 
-    #[Route('/langues/insert', name: 'insert_langue')]
+    #[Route('/langue/insert', name: 'insert_langue')]
     public function insert(EntityManagerInterface $em): Response
     {
         $langue = new Langue();
@@ -30,7 +30,7 @@ class LangueController extends AbstractController
         return $this->redirectToRoute('langues');
     }
 
-    #[Route('/langues/{id}', name: 'detail_langue')]
+    #[Route('/langue/{id}', name: 'detail_langue')]
     public function show($id, EntityManagerInterface $em): Response
     {
         $langue = $em->getRepository(Langue::class)->find($id);

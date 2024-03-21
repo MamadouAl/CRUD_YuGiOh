@@ -50,9 +50,11 @@
                                                 <td>{{ edition.getDateEdition()|date('Y-m-d') }}</td>
                                                 <td>
                                                 
-                                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('edition_carte', {'id': edition.getId}) }}'">
+                                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('edition_carte', {'id': edition.getId()}) }}'">
                                                     voir plus
                                                 </button>
+                                                <button onclick="window.location.href = '{{ path('delete_edition', {'id':edition.getId()})}}'"  type="button"class="btn btn-danger">supprimer</button>
+                                                
                                                 </td>
                                             </tr>
                                         {% endfor %}

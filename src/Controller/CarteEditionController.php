@@ -13,26 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarteEditionController extends AbstractController
 {
-    #[Route('/edition/{id}', name: 'edition_carte')]
-    public function showEditionDetail($id, EntityManagerInterface $em): Response
-    {
-
-        $edition = $em->getRepository(Edition::class)->find($id);
-        
-        // Vérifier si l'édition existe
-        if (!$edition) {
-            throw $this->createNotFoundException('L\'édition avec l\'ID '.$id.' n\'existe pas.');
-        }
-        $cartes = $edition->getCarteEditions();
-        $langues = $em->getRepository(Langue::class)->findAll();
-      
-        return $this->render('carte_edition/index.html.twig', [
-            'edition' => $edition,
-            'cartes' => $cartes,
-            'langues' => $langues,
-        ]);
-    }
-
+   
     //insert
     #[Route('/carteEdition/insert', name: 'insert_carteEdition')]
     public function insert(EntityManagerInterface $em): Response

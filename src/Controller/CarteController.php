@@ -66,7 +66,7 @@ class CarteController extends AbstractController
         ]);
     }
     // je veux la methode supprimer une carte en prenant l'id en parametre
-    #[Route('/cartes/delete/{id}', name: 'delete_carte')]
+    #[Route('/carte/delete/{id}', name: 'delete_carte')]
     public function delete($id, EntityManagerInterface $em): Response
     {
         // dd($id);
@@ -76,27 +76,7 @@ class CarteController extends AbstractController
         return $this->redirectToRoute('cartes');
     }
   
-   
-
-    // public function insert(EntityManagerInterface $em): Response
-    // {
-    //     $carte = new Carte();
-    //     $carte->setCarteNom('carte');
-    //     $carte->setCarteCategorie('categorie');
-    //     $carte->setCarteAttribut('attribut');
-    //     $carte->setCarteImage('image');
-    //     $carte->setCarteType('type');
-    //     $carte->setCarteNiveau('niveau');
-    //     $carte->setCarteSpecificite('specificite');
-    //     $carte->setCarteATK('atk');
-    //     $carte->setCarteDEF('def');
-    //     $carte->setCarteDescription('description');
-    //     $em->persist($carte);
-    //     $em->flush();
-    //     return $this->redirectToRoute('cartes');
-    // }
-    
-    #[Route('/cartes/update/{id}', name: 'update_carte')]
+    #[Route('/carte/update/{id}', name: 'update_carte')]
     public function update($id, EntityManagerInterface $em): Response
     {
         $carte = $em->getRepository(Carte::class)->find($id);
