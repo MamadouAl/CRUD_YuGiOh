@@ -68,6 +68,7 @@ class Edition
     }
     #[ORM\OneToMany(mappedBy: 'edition', targetEntity: CarteEdition::class)]
     private Collection $carteEditions;
+    private Collection $cartePossedee;
 
     public function __construct()
     {
@@ -87,5 +88,4 @@ class Edition
     {
         return $this->cartePossedee;
     }
-   
 }

@@ -1,11 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Carte Details{% endblock %}
+{% block title %}Ma Collection{% endblock %}
 
 {% block body %}
-    <h1>Carte: {{ carte.id }}</h1>
-
-    {% for carteEdition in carteEditions %}
-        <p>CarteEdition ID: {{ carteEdition.id }} - Carte ID: {{ carteEdition.carte.getId() }} - Edition ID: {{ carteEdition.edition.getId() }}</p>
-    {% endfor %}
+   
 {% endblock %}

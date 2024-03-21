@@ -8,14 +8,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CollectionController extends AbstractController
 {
-    #[Route('/home/{carteId}/{editionId}', name: 'home')]
-    public function index(int $carteId, int $editionId): Response
+    #[Route('/', name: 'home')]
+    public function index(): Response
     {
-        // Vous pouvez maintenant utiliser $carteId et $editionId
         return $this->render('collection/index.html.twig', [
             'controller_name' => 'CollectionController',
-            'carteId' => $carteId,
-            'editionId' => $editionId,
         ]);
     }
+
 }

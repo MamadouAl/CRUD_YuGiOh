@@ -39,7 +39,7 @@
                                             <th> ATK</th>
                                             <th>DEF</th>
                                             <th>Description</th>
-                                            <th>details</th>
+                                            <th>Autres</th>
 
                                         </tr>
                                     </thead>
@@ -55,7 +55,7 @@
                                             <th> ATK</th>
                                             <th>DEF</th>
                                             <th>Description</th>
-                                            <th>details</th>
+                                            <th>Autres</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -75,7 +75,7 @@
                                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getId}) }}'">
                                                     voir plus
                                                 </button>
-                                                
+                                                <button type="button"class="btn btn-danger" onclick="window.location.href = '{{ path('delete_carte', {'id': carte.getId}) }}'">Supprimer</button>
                                                 </td>
                                             </tr>
                                         {% endfor %}

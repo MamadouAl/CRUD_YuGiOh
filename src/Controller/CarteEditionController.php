@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Edition;
+use App\Entity\Langue;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,14 +21,13 @@ class CarteEditionController extends AbstractController
         if (!$edition) {
             throw $this->createNotFoundException('L\'édition avec l\'ID '.$id.' n\'existe pas.');
         }
-        //je veux recuperer les cartes de cette etudiion dans la carte_edition vu qu'on a l'id d'une edition
-        // Récupérer les cartes de cette édition
         $cartes = $edition->getCarteEditions();
-        // dd($cartes[0]->getCarte()->getCarteNom());
-        // Vous pouvez retourner les cartes dans un template Twig
+        $langues = $em->getRepository(Langue::class)->findAll();
+      
         return $this->render('carte_edition/index.html.twig', [
             'edition' => $edition,
             'cartes' => $cartes,
+            'langues' => $langues,
         ]);
     }
 }

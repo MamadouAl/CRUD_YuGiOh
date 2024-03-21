@@ -27,54 +27,46 @@
                                 liste des toutes les cartes de l'edition {{edition.getNomEdition()}}
                             </div>
                             <div class="card-body">
+                                <form method="post" action="">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>Image</th>
                                             <th>Nom</th>
                                             <th>Categorie</th>
-                                            <th>Attribut</th>
-                                            <th>Type</th>
                                             <th>Niveau</th>
-                                            
-                                            <th>Rarete</th>
-                                            <th>details</th>
-
+                                            <th>Rareté</th>
+                                            <th>Details</th>
+                                            <th>Ajouter</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                           <th>Image</th>
-                                            <th>Nom</th>
-                                            <th>Categorie</th>
-                                            <th>Attribut</th>
-                                            <th>Type</th>
-                                            <th>Niveau</th>
-                                            <th>Rarete</th>
-                                            <th>details</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         {% for carte in cartes %}
                                             <tr>
-                                                <td><img src="{{carte.getCarte().getCarteImage()}}" class="img-fluid rounded-top" alt="" style="width: 100px; height: 100px;"></td>
+                                                <td><img src="{{ carte.getCarte().getCarteImage() }}" class="img-fluid rounded-top" alt="" style="width: 100px; height: 100px;"></td>
                                                 <td>{{ carte.getCarte().getCarteNom() }}</td>
                                                 <td>{{ carte.getCarte().getCarteCategorie() }}</td>
-                                                <td>{{ carte.getCarte().getCarteAttribut() }}</td>
-                                                <td>{{ carte.getCarte().getCarteType() }}</td>
                                                 <td>{{ carte.getCarte().getCarteNiveau() }}</td>
-                                                 <td>{{ carte.getRarete()}}</td>
+                                                <td>{{ carte.getRarete() }}</td>
                                                 <td>
-                                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getCarte().getId}) }}'">
-                                                    voir plus
-                                                </button>
-                                                
+                                                    <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getCarte().getId }) }}'">Voir plus</button>
+                                                </td>
+                                                <td>
+                                                    <select class="form-select" name="langue">
+                                                        <option selected disabled>Choisir une langue</option>
+                                                        {% for langue in langues %}
+                                                            <option value="{{ langue.getId() }}">{{ langue.getNomLangue() }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <input type="hidden" name="carte_id" value="{{ carte.getCarte().getId() }}">
+                                                    <input type="hidden" name="edition_id" value="{{ edition.getId() }}">
+                                                    <button type="submit" class="btn btn-success">Ajouter à ma collection</button>
                                                 </td>
                                             </tr>
                                         {% endfor %}
-                                   
                                     </tbody>
                                 </table>
+                            </form>
                             </div>
                         </div>
                     </div>

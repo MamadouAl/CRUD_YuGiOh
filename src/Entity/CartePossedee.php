@@ -6,61 +6,58 @@ use App\Repository\CartePossedeeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CartePossedeeRepository::class)]
+#[ORM\Table(name: "carte_possedee")]
 class CartePossedee
 {
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: Carte::class)]
-    #[ORM\JoinColumn(name : 'carte_id', referencedColumnName: 'id')]
-    private ?int $carte;
+    #[ORM\JoinColumn(name: 'carte_id', referencedColumnName: 'id')]
+    private ?Carte $carte;
 
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: Edition::class)]
     #[ORM\JoinColumn(name : 'edition_id', referencedColumnName: 'id')]
-    private ?int $edition;
+    private ?Edition $edition;
 
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: Langue::class)]
     #[ORM\JoinColumn(name : 'langue_id', referencedColumnName: 'id')]
-    private ?int $langue = null;
+    private ?Langue $langue = null;
 
     #[ORM\Column]
     private ?int $quantite = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getCarte(): ?int
+   
+    public function getCarte(): ?Carte
     {
         return $this->carte;
     }
 
-    public function setCarte(int $carte): static
+    public function setCarte(Carte $carte): static
     {
         $this->carte = $carte;
 
         return $this;
     }
 
-    public function getEdition(): ?int
+    public function getEdition(): ?Edition
     {
         return $this->edition;
     }
 
-    public function setEdition(int $edition): static
+    public function setEdition(Edition $edition): static
     {
         $this->edition = $edition;
 
         return $this;
     }
 
-    public function getLangue(): ?int
+    public function getLangue(): ?Langue
     {
         return $this->langue;
     }
 
-    public function setLangue(int $langue): static
+    public function setLangue(Langue $langue): static
     {
         $this->langue = $langue;
 
