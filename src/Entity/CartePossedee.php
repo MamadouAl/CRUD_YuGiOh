@@ -72,7 +72,6 @@ class CartePossedee
     public function setQuantite(int $quantite): static
     {
         $this->quantite = $quantite;
-
         return $this;
     }
 }

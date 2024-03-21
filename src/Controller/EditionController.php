@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class EditionController extends AbstractController
 {
-    #[Route('/editions', name: 'editions')]
+    #[Route('/edition', name: 'editions')]
     public function index(EntityManagerInterface $em): Response
     {
         $editions = $em->getRepository(Edition::class)->findAll();
@@ -20,15 +20,15 @@ class EditionController extends AbstractController
         ]);
        
     }
-    #[Route('/edition/insert', name: 'edition_insert')]
+
+    #[Route('/edition/insert', name: 'insert_edition')]
     public function insert(EntityManagerInterface $em): Response
     {
         $edition = new Edition();
-        $edition->setNomEdition('Nouvelle Edition');
-        $edition->setDateEdition(new \DateTime('2021-10-10'));
+        $edition->setNomEdition('Nouvelle Edition 24');
+        $edition->setDateEdition(new \DateTime('2021-12-01'));
         $em->persist($edition);
         $em->flush();
-        dd($edition);
         return $this->redirectToRoute('editions');
     }
 
@@ -42,8 +42,6 @@ class EditionController extends AbstractController
         return $this->redirectToRoute('editions');
     }
 
- 
-
     #[Route('/edition/update/{id}', name: 'update_edition')]
     public function update($id, EntityManagerInterface $em): Response
     {
@@ -53,7 +51,4 @@ class EditionController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('editions');
     }
-
-    
-
 }

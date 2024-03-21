@@ -107,5 +107,4 @@ class CartePossedeeController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('home');
     }
-
 }

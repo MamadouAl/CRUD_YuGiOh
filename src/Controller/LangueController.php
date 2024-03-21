@@ -20,7 +20,17 @@ class LangueController extends AbstractController
         ]);
     }
 
-    #[Route('/langue/{id}', name: 'detail_langue')]
+    #[Route('/langues/insert', name: 'insert_langue')]
+    public function insert(EntityManagerInterface $em): Response
+    {
+        $langue = new Langue();
+        $langue->setNomLangue('Blabla');
+        $em->persist($langue);
+        $em->flush();
+        return $this->redirectToRoute('langues');
+    }
+
+    #[Route('/langues/{id}', name: 'detail_langue')]
     public function show($id, EntityManagerInterface $em): Response
     {
         $langue = $em->getRepository(Langue::class)->find($id);
@@ -29,11 +39,9 @@ class LangueController extends AbstractController
                 'No product found for id '.$id
             );
         }
-        dd($langue->getNomLangue());
-        return $this->render('langue/show.html.twig', [
-            'langue' => $langue,
-        ]);
+        return dd($langue->getNomLangue());
     }
+
     #[Route('/langue/delete/{id}', name: 'delete_langue')]
     public function delete($id, EntityManagerInterface $em): Response
     {
@@ -42,23 +50,14 @@ class LangueController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('langues');
     }
-    #[Route('/langues/insert', name: 'insert_langue')]
-    public function insert(EntityManagerInterface $em): Response
-    {
-        $langue = new Langue();
-        $langue->setNomLangue('Peul');
-        $em->persist($langue);
-        $em->flush();
-        return $this->redirectToRoute('langues');
-    }
+
     #[Route('/langue/update/{id}', name: 'update_langue')]
     public function update($id, EntityManagerInterface $em): Response
     {
         $langue = $em->getRepository(Langue::class)->find($id);
-        $langue->setNomLangue('Anglais');
+        $langue->setNomLangue('Poular');
         $em->persist($langue);
         $em->flush();
         return $this->redirectToRoute('langues');
     }
-    
 }
