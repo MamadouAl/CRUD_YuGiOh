@@ -19,28 +19,35 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h1>Ajouter une nouvelle édition</h1>
-
-                            {{ form_start(form) }}
-                            <div class="form-group">
-                                {{ form_label(form.nom_edition) }}
-                                {{ form_widget(form.nom_edition, {'attr': {'class': 'form-control'}}) }}
-                                {{ form_errors(form.nom_edition) }}
-                            </div>
-
-                            <div class="form-group">
-                                {{ form_label(form.date_edition) }}
-                                {{ form_widget(form.date_edition, {'attr': {'class': 'form-control'}}) }}
-                                {{ form_errors(form.date_edition) }}
-                            </div>
-
-                            <div class="form-group">
-                                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-                                {{ form_end(form) }}
-                            </div>
                         </div>
                     </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                        </div>
+                        <div class="card-body">
+                                {{ form_start(form) }}
+                                <div class="form-group">
+                                    {{ form_label(form.nom_edition) }}
+                                    {{ form_widget(form.nom_edition, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.nom_edition) }}
+                                </div>
 
-                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.date_edition) }}
+                                    {{ form_widget(form.date_edition, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.date_edition) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
             </main>
 
         </div>

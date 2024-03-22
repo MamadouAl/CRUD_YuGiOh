@@ -17,7 +17,9 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                               
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('insert_carte') }}'">
+                                    Ajouter une nouvelle carte
+                                </button>
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -55,7 +57,7 @@
                                             <th> ATK</th>
                                             <th>DEF</th>
                                             <th>Description</th>
-                                            <th>Autres</th>
+                                            <th colspan="3">Autres</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -74,8 +76,12 @@
                                                 <td>
                                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getId}) }}'">
                                                     voir plus
-                                                </button>
-                                                <button type="button"class="btn btn-danger" onclick="window.location.href = '{{ path('delete_carte', {'id': carte.getId}) }}'">Supprimer</button>
+                                                </button> </td><td>
+                                                    <button type="button"class="btn btn-danger" onclick="window.location.href = '{{ path('delete_carte', {'id': carte.getId}) }}'">Supprimer</button>
+                                                </td><td>
+                                                    <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('update_carte', {'id': carte.getId}) }}'">
+                                                        Modifier
+                                                    </button>
                                                 </td>
                                             </tr>
                                         {% endfor %}
