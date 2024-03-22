@@ -17,8 +17,12 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
+
                                <button onclick="window.location.href = '{{ path('carte_edition_insert') }}'" type="button"class="btn btn-primary">Ajouter une carte dans une edition</button>
-                               
+
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('insert_edition') }}'">
+                                    Ajouter une nouvelle edition
+                                </button>
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -32,7 +36,7 @@
                                         <tr>
                                             <th>Nom edition</th>
                                             <th>Date</th>
-                                            <th>details</th>
+                                            <th>Actions</th>
 
                                         </tr>
                                     </thead>
@@ -40,7 +44,7 @@
                                         <tr>
                                            <th>Nom Edition</th>
                                             <th>Date</th>
-                                            <th>details</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -55,7 +59,10 @@
                                                     voir plus
                                                 </button>
                                                 <button onclick="window.location.href = '{{ path('delete_edition', {'id':edition.getId()})}}'"  type="button"class="btn btn-danger">supprimer</button>
-                                                
+
+                                                <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('update_edition', {'id': edition.getId()}) }}'">
+                                                    modifier
+                                                </button>
                                                 </td>
                                             </tr>
                                         {% endfor %}

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'une carte{% endblock %}
+
+{% block body %}
+<div id="layoutSidenav">
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">EDITIONS</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a href="index.html">collection</a></li>
+                    <li class="breadcrumb-item active">edition</li>
+                </ol>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">Ajouter une nouvelle carte </h2>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                        </div>
+                        <div class="card-body">
+                            {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_nom, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_categorie, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_attribut, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_image, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_type, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_niveau, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_specificite, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_ATK, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form_row(form.carte_DEF, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            {{ form_row(form.carte_description, {'attr': {'class': 'form-control'}}) }}
+
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            {{ form_end(form) }}
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
