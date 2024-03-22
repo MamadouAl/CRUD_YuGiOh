@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\LangueRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LangueRepository::class)]
@@ -13,10 +14,12 @@ class Langue
     #[ORM\Column]
     private ?int $id = null;
 
-    // #[ORM\Column]
-    // private ?int $num_langue = null;
-
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom de la langue ne peut pas être vide.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "Le nom de la langue ne peut pas dépasser {{ limit }} caractères."
+    )]
     private ?string $nom_langue = null;
 
     public function getId(): ?int

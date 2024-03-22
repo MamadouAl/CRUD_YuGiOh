@@ -17,6 +17,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
+                               <button onclick="window.location.href = '{{ path('langue_insert') }}'" type="button"class="btn btn-primary">Ajouter une langue </button>
                                
                             </div>
                         </div>
@@ -31,13 +32,14 @@
                                         <tr>
                                             <th>Numero</th>
                                             <th>Nom</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                            <th>Numero</th>
                                             <th>Nom</th>
-                                            
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -46,6 +48,10 @@
                                                
                                                 <td>{{ langue.getId() }}</td>
                                                 <td>{{ langue.getNomLangue() }}</td>
+                                                <td> 
+                                               <button type="button" onclick="window.location.href = '{{ path('update_langue', {'id': langue.getId()}) }}'" class="btn btn-warning">Modifier</button>
+                                            <button type="button" onclick="window.location.href = '{{ path('delete_langue', {'id': langue.getId()}) }}'" class="btn btn-danger">supprimer</button>                                               
+                                                </td>
                                                 
                                             </tr>
                                         {% endfor %}

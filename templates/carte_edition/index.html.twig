@@ -18,7 +18,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                               
+
                             </div>
                         </div>
                         <div class="card mb-4">
@@ -36,10 +36,21 @@
                                             <th>Categorie</th>
                                             <th>Niveau</th>
                                             <th>Rareté</th>
-                                            <th>Details</th>
+                                            <th>Actions</th>
                                             <th>Ajouter</th>
                                         </tr>
                                     </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Nom</th>
+                                            <th>Categorie</th>
+                                            <th>Niveau</th>
+                                            <th>Rareté</th>
+                                            <th>Actions</th>
+                                            <th>Ajouter</th>
+                                        </tr>
+                                    </tfoot>
                                     <tbody>
                                         {% for carte in cartes %}
                                             <tr>
@@ -50,6 +61,8 @@
                                                 <td>{{ carte.getRarete() }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getCarte().getId }) }}'">Voir plus</button>
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href = '{{ path('delete_carteEdition', {'carte_id': carte.getCarte().getId,'edition_id':edition.getId() }) }}'">Supprimer</button>
+                                                    <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('update_carteEdition', {'carte_id': carte.getCarte().getId,'edition_id':edition.getId() }) }}'">Modifier</button>
                                                 </td>
                                                 <td>
                                                     <select class="form-select" name="langue">

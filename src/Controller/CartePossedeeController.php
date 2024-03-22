@@ -81,7 +81,7 @@ class CartePossedeeController extends AbstractController
             throw $this->createNotFoundException('Pas de carte possedee trouvée pour lid donné');
         }
         //modifier la quantite
-        $cartePossedee->setQuantite(20);
+        $cartePossedee->setQuantite(10);
         $em->persist($cartePossedee);
         $em->flush();
         return $this->redirectToRoute('home');

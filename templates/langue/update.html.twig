@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajouter une langue{% endblock %}
+
+{% block body %}
+    <div id="layoutSidenav"> 
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">LANGUE</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="{{ path('langues') }}">Langue</a></li>
+                        <li class="breadcrumb-item active">Modifier</li>
+                    </ol>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h1>Modifier langue</h1>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                        </div>
+                        <div class="card-body">
+                          {{ form_start(form) }}
+                                {{ form_row(form.nom_langue) }}
+                                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                                {{ form_end(form) }}
+                        </div>                         
+                    </div>
+                </div>
+            </main>          
+        </div>
+    </div>
+{% endblock %}
