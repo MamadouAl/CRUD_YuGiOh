@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{# templates/edition/insert.html.twig #}
+
+{% block title %}Ajouter une nouvelle édition{% endblock %}
+
+{% block body %}
+
+    <div id="layoutSidenav">
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">EDITIONS</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="index.html">collection</a></li>
+                        <li class="breadcrumb-item active">edition</li>
+                    </ol>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h1>Ajouter une nouvelle édition</h1>
+
+                            {{ form_start(form) }}
+                            <div class="form-group">
+                                {{ form_label(form.nom_edition) }}
+                                {{ form_widget(form.nom_edition, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.nom_edition) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.date_edition) }}
+                                {{ form_widget(form.date_edition, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.date_edition) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+    </div>
+{% endblock %}
