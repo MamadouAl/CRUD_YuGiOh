@@ -78,7 +78,16 @@
                                             <td>{{carte.getQuantite}}</td>
                                             <td>
                                             <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getCarte().getId()}) }}'">voir plus</button>
-                                            <button type="button" onclick="window.location.href = '{{ path('delete_collection', {'carte_id': carte.getCarte().getId(),'edition_id':carte.getEdition().getId,'langue_id':carte.getLangue().getId()}) }}'" class="btn btn-danger">supprimer</button>
+                                            <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('carte_possedee_update', {'carte_id': carte.getCarte().getId(), 'edition_id': carte.getEdition().getId(), 'langue_id': carte.getLangue().getId() }) }}'">modifier</button>
+<button type="button" class="btn btn-danger" onclick="confirmDelete('{{ path('delete_collection', {'carte_id': carte.getCarte().getId(), 'edition_id': carte.getEdition().getId(), 'langue_id': carte.getLangue().getId()}) }}')">Supprimer</button>
+
+<script>
+    function confirmDelete(url) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer cette carte de votre collection ?")) {
+            window.location.href = url;
+        }
+    }
+</script>
                                             </td>
                                         </tr>
                                     {% endfor %} 

@@ -50,7 +50,15 @@
                                                 <td>{{ langue.getNomLangue() }}</td>
                                                 <td> 
                                                <button type="button" onclick="window.location.href = '{{ path('update_langue', {'id': langue.getId()}) }}'" class="btn btn-warning">Modifier</button>
-                                            <button type="button" onclick="window.location.href = '{{ path('delete_langue', {'id': langue.getId()}) }}'" class="btn btn-danger">supprimer</button>                                               
+<button type="button" class="btn btn-danger" onclick="confirmDelete('{{ path('delete_langue', {'id': langue.getId()}) }}')">Supprimer</button>
+
+<script>
+    function confirmDelete(url) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer cette langue ?")) {
+            window.location.href = url;
+        }
+    }
+</script>
                                                 </td>
                                                 
                                             </tr>

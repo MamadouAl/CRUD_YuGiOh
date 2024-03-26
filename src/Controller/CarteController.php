@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 use App\Entity\Carte;
+use App\Entity\CarteEdition;
+use App\Entity\CartePossedee;
 use App\Entity\Edition;
 
 use App\Form\CarteType;
@@ -86,6 +88,7 @@ class CarteController extends AbstractController
     {
         $carte = $em->getRepository(Carte::class)->find($id);
         
+        
         $idEdition = $carte  -> getEditionId($em, $carteEditionRepository);
         $edition = $em->getRepository(Edition::class)->find($idEdition);
        // dd($edition->getNomEdition());
@@ -105,7 +108,17 @@ class CarteController extends AbstractController
     #[Route('/carte/delete/{id}', name: 'delete_carte')]
     public function delete($id, EntityManagerInterface $em): Response
     {
-        // dd($id);
+        //supprimer toutes les cartes avec l'id dans la table carteEdition il peut y avoir pluesieurs( je vous rappelle que l'id de carte peut figuere plusieur fois dans la table carteEdtion )
+        $carteEdition = $em->getRepository(CarteEdition::class)->findBy(['carte' => $id]); 
+        foreach ($carteEdition as $carteEdition) {
+            $em->remove($carteEdition);
+        }
+
+        //pareil dans la table cartePossedee
+        $cartePossedee = $em->getRepository(CartePossedee::class)->findBy(['carte' => $id]);
+        foreach ($cartePossedee as $cartePossedee) {
+            $em->remove($cartePossedee);
+        }
         $carte = $em->getRepository(Carte::class)->find($id);
         $em->remove($carte);
         $em->flush();

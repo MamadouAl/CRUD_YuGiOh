@@ -5,8 +5,7 @@
   
 {% endblock %}
 {% block body %}
- <div id="layoutSidenav">
-            
+ <div id="layoutSidenav">   
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -76,9 +75,17 @@
                                                 <td>
                                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getId}) }}'">
                                                     voir plus
-                                                </button> </td><td>
-                                                    <button type="button"class="btn btn-danger" onclick="window.location.href = '{{ path('delete_carte', {'id': carte.getId}) }}'">Supprimer</button>
-                                                </td><td>
+                                                </button> </td>
+                                                <td><button type="button" class="btn btn-danger" onclick="deleteCarte({{ carte.getId }})">Supprimer</button></td>
+
+                                                    <script>
+                                                        function deleteCarte(carteId) {
+                                                            if (confirm('Êtes-vous sûr de vouloir supprimer cette carte ?')) {
+                                                                window.location.href = '{{ path('delete_carte', {'id': '__carte_id__'}) }}'.replace('__carte_id__', carteId);
+                                                            }
+                                                        }
+                                                    </script>
+                                                <td>
                                                     <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('update_carte', {'id': carte.getId}) }}'">
                                                         Modifier
                                                     </button>
@@ -94,8 +101,7 @@
                 </main>
                
             </div>
-        </div>
-
+</div>
 {% endblock %}
 
 {% block javascripts %}

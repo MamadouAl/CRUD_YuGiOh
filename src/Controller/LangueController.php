@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\CartePossedee;
 use App\Entity\Langue;
 use App\Form\LangueType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -58,6 +59,11 @@ class LangueController extends AbstractController
     #[Route('/langue/delete/{id}', name: 'delete_langue')]
     public function delete($id, EntityManagerInterface $em): Response
     {
+        $cartePossedee = $em->getRepository(CartePossedee::class)->findBy(['langue' => $id]);
+        foreach ($cartePossedee as $cartePossedee) {
+            $em->remove($cartePossedee);
+        }
+
         $langue = $em->getRepository(Langue::class)->find($id);
         $em->remove($langue);
         $em->flush();

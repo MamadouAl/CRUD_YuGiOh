@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Maj d'une carte{% endblock %}
+
+{% block body %}
+    <div id="layoutSidenav">
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">EDITIONS</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="{{path('home')}}">collection</a></li>
+                    </ol>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">Mise à jour d'une carte </h2>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                        </div>
+                        <div class="card-body">
+    <h1>Modifier la carte possédée</h1>
+{{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.quantite) }}
+        {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.langue) }}
+        {{ form_widget(form.langue, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+     {# Champ Carte (caché) #}
+    <div class="form-group" style="display: none;">
+        {{ form_widget(form.carte) }}
+    </div>
+
+    {# Champ Edition (caché) #}
+    <div class="form-group" style="display: none;">
+        {{ form_widget(form.edition) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+{{ form_end(form) }}
+</div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+{% endblock %}
