@@ -13,8 +13,9 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">EDITIONS</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">collection</a></li>
-                        <li class="breadcrumb-item active">edition</li>
+                        <li class="breadcrumb-item"><a href="{{ path('home') }}">Collection</a></li>
+                        <li class="breadcrumb-item "><a href="{{ path('editions') }}"> Editions</a></li>
+                        <li class="breadcrumb-item active">Nouvelle insertion</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-body">
@@ -35,7 +36,7 @@
 
                                 <div class="form-group">
                                     {{ form_label(form.date_edition) }}
-                                    {{ form_widget(form.date_edition, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.date_edition, {'label': 'Date de l\'edition','attr': {'class': 'form-control'}}) }}
                                     {{ form_errors(form.date_edition) }}
                                 </div>
 

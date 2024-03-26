@@ -87,7 +87,12 @@ class CarteController extends AbstractController
         $carte = $em->getRepository(Carte::class)->find($id);
         
         $idEdition = $carte  -> getEditionId($em, $carteEditionRepository);
-        $edition = $em->getRepository(Edition::class)->find($idEdition);
+        if($idEdition) {
+            $edition = $em->getRepository(Edition::class)->find($idEdition)->getNomEdition();
+        }else {
+            $edition = "Pas d'édition renseignée";
+        }
+
        // dd($edition->getNomEdition());
 
         if (!$carte) {
@@ -101,6 +106,7 @@ class CarteController extends AbstractController
             'edition' => $edition,
         ]);
     }
+
     // je veux la methode supprimer une carte en prenant l'id en parametre
     #[Route('/carte/delete/{id}', name: 'delete_carte')]
     public function delete($id, EntityManagerInterface $em): Response
@@ -111,22 +117,4 @@ class CarteController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('cartes');
     }
-  
-//    #[Route('/carte/update/{id}', name: 'update_carte')]
-//    public function update($id, EntityManagerInterface $em): Response
-//    {
-//        $carte = $em->getRepository(Carte::class)->find($id);
-//        $carte->setCarteNom('new carte 2024');
-//        $carte->setCarteCategorie('monstre');
-//        $carte->setCarteAttribut('tenebre');
-//        $carte->setCarteImage('https://www.otk-expert.fr/cartes/yugioh_ext/BLMR/BLMR-1q.jpg');
-//        $carte->setCarteType('DRAGON');
-//        $carte->setCarteNiveau('8');
-//        $carte->setCarteSpecificite('FUSION');
-//        $carte->setCarteATK('2900');
-//        $carte->setCarteDEF('2400');
-//        $carte->setCarteDescription('nouvelle description');
-//        $em->flush();
-//        return $this->redirectToRoute('cartes');
-//    }
 }

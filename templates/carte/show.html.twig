@@ -8,11 +8,11 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">DETAILS DE LA CARTE</h1>
+                        <h1 class="mt-4">{{carte.getCarteNom()}}</h1>
                         <ol class="breadcrumb mb-4">
                             {# <li class="breadcrumb-item"><a href="index.html">collection</a></li> #}
                             {# <li class="breadcrumb-item"><a href="index.html">cartes</a></li> #}
-                            <li class="breadcrumb-item active">{{carte.getCarteNom()}}</li>
+                            <li class="breadcrumb-item active">Détails</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -71,7 +71,7 @@
                                     </tr>
                                     <tr>
                                         <th class="fs-5">Edition</th>
-                                        <td>{{ edition.getNomEdition() }}</td>
+                                            <td>{{ edition }}</td>
                                     </tr>
                                 </table>
 
