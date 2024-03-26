@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CarteEditionRepository;
 use App\Repository\CarteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -47,11 +48,34 @@ class Carte
 
    #[ORM\Column(length: 200000, nullable: true)]
     private ?string $carte_description = null;
+    /**
+     * @ORM\OneToMany(targetEntity=CarteEdition::class, mappedBy="carte", cascade={"remove"})
+     */
+    // private $carteEditions;
+
+    // public function __construct()
+    // {
+    //     $this->carteEditions = new ArrayCollection();
+    // }
+    // public function removeCarteEdition(CarteEdition $carteEdition): self
+    // {
+    //     if ($this->carteEditions->removeElement($carteEdition)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($carteEdition->getCarte() === $this) {
+    //             $carteEdition->setCarte(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
+  
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    
 
     // public function getNumCarte(): ?int
     // {

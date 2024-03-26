@@ -59,7 +59,15 @@
                                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('edition_carte', {'id': edition.getId()}) }}'">
                                                     voir plus
                                                 </button>
-                                                <button onclick="window.location.href = '{{ path('delete_edition', {'id':edition.getId()})}}'"  type="button"class="btn btn-danger">supprimer</button>
+<button type="button" class="btn btn-danger" onclick="confirmDelete('{{ path('delete_edition', {'id': edition.getId()}) }}')">Supprimer</button>
+
+<script>
+    function confirmDelete(url) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer cette édition ?")) {
+            window.location.href = url;
+        }
+    }
+</script>
 
                                                 <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('update_edition', {'id': edition.getId()}) }}'">
                                                     modifier

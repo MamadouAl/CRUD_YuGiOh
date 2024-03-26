@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\CarteEdition;
+use App\Entity\CartePossedee;
 use App\Entity\Edition;
 use App\Entity\Langue;
 use App\Form\EditionType;
@@ -101,7 +103,16 @@ class EditionController extends AbstractController
     #[Route('/edition/delete/{id}', name: 'delete_edition')]
     public function delete($id, EntityManagerInterface $em): Response
     {
-        // dd($id);
+        $carteEdition = $em->getRepository(CarteEdition::class)->findBy(['edition' => $id]); 
+        foreach ($carteEdition as $carteEdition) {
+            $em->remove($carteEdition);
+        }
+
+        //pareil dans la table cartePossedee
+        $cartePossedee = $em->getRepository(CartePossedee::class)->findBy(['edition' => $id]);
+        foreach ($cartePossedee as $cartePossedee) {
+            $em->remove($cartePossedee);
+        }
         $edition = $em->getRepository(Edition::class)->find($id);
         $em->remove($edition);
         $em->flush();

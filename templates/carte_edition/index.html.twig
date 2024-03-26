@@ -27,7 +27,7 @@
                                 liste des toutes les cartes de l'edition {{edition.getNomEdition()}}
                             </div>
                             <div class="card-body">
-                                <form method="post" action="">
+                                {# <form method="post" action=""> #}
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
@@ -61,25 +61,50 @@
                                                 <td>{{ carte.getRarete() }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getCarte().getId }) }}'">Voir plus</button>
-                                                    <button type="button" class="btn btn-danger" onclick="window.location.href = '{{ path('delete_carteEdition', {'carte_id': carte.getCarte().getId,'edition_id':edition.getId() }) }}'">Supprimer</button>
+                                                    <button type="button" class="btn btn-danger" onclick="deleteCarteEdition({{ carte.getCarte().getId }}, {{ edition.getId() }})">Supprimer</button>
+                                                    <script>
+                                                        function deleteCarteEdition(carteId, editionId) {
+                                                            if (confirm('Êtes-vous sûr de vouloir supprimer cette carte édition ?')) {
+                                                                window.location.href = '{{ path('delete_carteEdition', {'carte_id': '__carte_id__', 'edition_id': '__edition_id__'}) }}'
+                                                                    .replace('__carte_id__', carteId)
+                                                                    .replace('__edition_id__', editionId);
+                                                            }
+                                                        }
+                                                    </script>
                                                     <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('update_carteEdition', {'carte_id': carte.getCarte().getId,'edition_id':edition.getId() }) }}'">Modifier</button>
                                                 </td>
                                                 <td>
-                                                    <select class="form-select" name="langue">
-                                                        <option selected disabled>Choisir une langue</option>
-                                                        {% for langue in langues %}
-                                                            <option value="{{ langue.getId() }}">{{ langue.getNomLangue() }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                    <input type="hidden" name="carte_id" value="{{ carte.getCarte().getId() }}">
-                                                    <input type="hidden" name="edition_id" value="{{ edition.getId() }}">
-                                                    <button type="submit" class="btn btn-success">Ajouter à ma collection</button>
+                                                    <form id="addToCollectionForm" action="{{ path('add_to_collection') }}" method="post">
+                                                            <select id="langueSelect" class="form-select" name="langue">
+                                                                <option selected disabled>Choisir une langue</option>
+                                                                {% for langue in langues %}
+                                                                    <option value="{{ langue.getId() }}">{{ langue.getNomLangue() }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                            <input type="hidden" name="carte_id" value="{{carte.getCarte().getId()}}">
+                                                            <input type="hidden" name="edition_id" value="{{carte.getEdition().getId()}}">
+                                                            <button type="submit" class="btn btn-success">Ajouter à ma collection</button>
+                                                    </form>
+
+                                                        <script>
+                                                            document.getElementById('langueSelect').addEventListener('change', function() {
+                                                                // Mettre à jour les valeurs des champs cachés
+                                                                var selectedLangueId = this.value;
+                                                                var carteId = document.querySelector('[name="carte_id"]').value;
+                                                                var editionId = document.querySelector('[name="edition_id"]').value;
+                                                                document.querySelector('[name="langue"]').value = selectedLangueId;
+                                                                
+                                                                // Soumettre le formulaire
+                                                                document.getElementById('addToCollectionForm').submit();
+                                                            });
+                                                        </script>
+
                                                 </td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                            </form>
+                            {# </form> #}
                             </div>
                         </div>
                     </div>
