@@ -20,6 +20,13 @@ class CarteEdition
     private ?Edition $edition;
 
     #[ORM\Column(length: 255, nullable: true)]
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     *
+     * @ORM\Column(name="rarete", type="string", length=255)
+     */
     private ?string $rarete;
 
     public function getCarte(): ?Carte
