@@ -20,6 +20,15 @@ class Langue
         max: 255,
         maxMessage: "Le nom de la langue ne peut pas dépasser {{ limit }} caractères."
     )]
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_langue", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 255, maxMessage = "Le nom de la langue ne peut pas dépasser {{ limit }} caractères.")
+     * @Assert\Unique()
+     * @Assert\Regex(pattern = "/^[a-zA-ZÀ-ÿ0-9\- ]+$/", message = "Le nom de la langue ne peut contenir que des lettres, des chiffres, des espaces et des tirets.")
+     */
     private ?string $nom_langue = null;
 
     public function getId(): ?int

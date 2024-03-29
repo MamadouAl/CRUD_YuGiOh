@@ -25,6 +25,7 @@ class CartePossedee
     private ?Langue $langue = null;
 
     #[ORM\Column]
+
     private ?int $quantite = null;
 
    

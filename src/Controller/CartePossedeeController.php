@@ -54,7 +54,22 @@ public function addToCollection(Request $request, EntityManagerInterface $entity
     $langue = $entityManager->getRepository(Langue::class)->find($langueId);
     $carte = $entityManager->getRepository(Carte::class)->find($carteId);
     $edition = $entityManager->getRepository(Edition::class)->find($editionId);
-   
+
+    //Verfiier si la carte existe deja dans la base de données
+    $carteEdition = $entityManager->getRepository(CartePossedee::class)->findOneBy([
+        'carte' => $carte,
+        'edition' => $edition,
+        'langue' => $langue,
+    ]);
+
+    // Si la carte existe déjà, augmenter la quantité de 1
+    if ($carteEdition) {
+        $carteEdition->setQuantite($carteEdition->getQuantite() + 1);
+        $entityManager->flush();
+        return $this->redirectToRoute('home');
+    }
+
+    // Si la carte n'existe pas, créer une nouvelle carte éditions
     $carteEdition = new CartePossedee();
     $carteEdition->setLangue($langue);
     $carteEdition->setCarte($carte);
@@ -69,27 +84,6 @@ public function addToCollection(Request $request, EntityManagerInterface $entity
     return $this->redirectToRoute('home');
 }
 
-   
-    // #[Route('/update/{carte_id}/{edition_id}/{langue_id}', name: 'update_collection')]
-    // public function update($carte_id,$edition_id,$langue_id, EntityManagerInterface $em): Response
-    // {
-    //     //recuperer la carte possedee et fonctions des id de la carte, de l'edition et de la langue
-    //     $cartePossedee = $em->getRepository(CartePossedee::class)->findOneBy([
-    //         'carte' => $carte_id,
-    //         'edition' => $edition_id,
-    //         'langue' => $langue_id,
-    //     ]);
-
-    //     //si la carte possedee n'existe pas
-    //     if (!$cartePossedee) {
-    //         throw $this->createNotFoundException('Pas de carte possedee trouvée pour lid donné');
-    //     }
-    //     //modifier la quantite
-    //     $cartePossedee->setQuantite(10);
-    //     $em->persist($cartePossedee);
-    //     $em->flush();
-    //     return $this->redirectToRoute('home');
-    // }
      #[Route('/update/{carte_id}/{edition_id}/{langue_id}', name: 'carte_possedee_update')]
 public function update(int $carte_id, int $edition_id, int $langue_id,Request $request, EntityManagerInterface $entityManager): Response
 {
