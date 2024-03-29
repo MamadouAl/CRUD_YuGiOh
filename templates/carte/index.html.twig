@@ -6,105 +6,99 @@
 {% endblock %}
 {% block body %}
  <div id="layoutSidenav">   
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">CARTES</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="{{ path("home") }}">Collection</a></li>
-                            <li class="breadcrumb-item active">Cartes</li>
-                        </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('insert_carte') }}'">
-                                    Ajouter une nouvelle carte
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                liste des toutes les cartes
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Nom</th>
-                                            <th>Categorie</th>
-                                            <th>Attribut</th>
-                                            <th>Type</th>
-                                            <th>Niveau</th>
-                                            <th>Specificité</th>
-                                            <th> ATK</th>
-                                            <th>DEF</th>
-                                            <th>Description</th>
-                                            <th>Actions</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                           <th>Image</th>
-                                            <th>Nom</th>
-                                            <th>Categorie</th>
-                                            <th>Attribut</th>
-                                            <th>Type</th>
-                                            <th>Niveau</th>
-                                            <th>Specificité</th>
-                                            <th> ATK</th>
-                                            <th>DEF</th>
-                                            <th>Description</th>
-                                            <th colspan="3">Actions</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        {% for carte in cartes %}
-                                            <tr>
-                                                <td><img src="{{ carte.getCarteImage() }}" class="img-fluid rounded-top" alt="" style="width: 100px; height: 100px;"></td>
-                                                <td>{{ carte.getCarteNom() }}</td>
-                                                <td>{{ carte.getCarteCategorie() }}</td>
-                                                <td>{{ carte.getCarteAttribut() }}</td>
-                                                <td>{{ carte.getCarteType() }}</td>
-                                                <td>{{ carte.getCarteNiveau() }}</td>
-                                                <td>{{ carte.getCarteSpecificite() }}</td>
-                                                <td>{{ carte.getCarteATK() }}</td>
-                                                <td>{{ carte.getCarteDEF() }}</td>
-                                                <td>{{ carte.getCarteDescription()[:100] }}</td>
-                                                <td>
-                                                <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getId}) }}'">
-                                                    voir plus
-                                                </button> </td>
-                                                <td><button type="button" class="btn btn-danger" onclick="deleteCarte({{ carte.getId }})">Supprimer</button></td>
-
-                                                    <script>
-                                                        function deleteCarte(carteId) {
-                                                            if (confirm('Êtes-vous sûr de vouloir supprimer cette carte ?')) {
-                                                                window.location.href = '{{ path('delete_carte', {'id': '__carte_id__'}) }}'.replace('__carte_id__', carteId);
-                                                            }
-                                                        }
-                                                    </script>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('update_carte', {'id': carte.getId}) }}'">
-                                                        Modifier
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                   
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">CARTES</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a href="{{ path("home") }}">Collection</a></li>
+                    <li class="breadcrumb-item active">Cartes</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                           <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('insert_carte') }}'">
+                            Ajouter une nouvelle carte
+                        </button>  
                     </div>
-                </main>
-               
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        liste des toutes les cartes
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Nom</th>
+                                    <th>Categorie</th>
+                                    <th>Attribut</th>
+                                    <th>Type</th>
+                                    <th>Niveau</th>
+                                    <th>Specificité</th>
+                                    <th> ATK</th>
+                                    <th>DEF</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Nom</th>
+                                    <th>Categorie</th>
+                                    <th>Attribut</th>
+                                    <th>Type</th>
+                                    <th>Niveau</th>
+                                    <th>Specificité</th>
+                                    <th> ATK</th>
+                                    <th>DEF</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                {% for carte in cartes %}
+                                    <tr>
+                                        <td><img src="{{ carte.getCarteImage() }}" class="img-fluid rounded-top" alt="" style="width: 100px; height: 100px;"></td>
+                                        <td>{{ carte.getCarteNom() }}</td>
+                                        <td>{{ carte.getCarteCategorie() }}</td>
+                                        <td>{{ carte.getCarteAttribut() }}</td>
+                                        <td>{{ carte.getCarteType() }}</td>
+                                        <td>{{ carte.getCarteNiveau() }}</td>
+                                        <td>{{ carte.getCarteSpecificite() }}</td>
+                                        <td>{{ carte.getCarteATK() }}</td>
+                                        <td>{{ carte.getCarteDEF() }}</td>
+                                        <td>{{ carte.getCarteDescription()[:100] }}</td>
+                                        <td>
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ path('detail_carte', {'id': carte.getId}) }}'">  voir plus</button>
+                                        <button type="button" class="btn btn-danger" onclick="deleteCarte({{ carte.getId }})">Supprimer</button>
+                                            <script>
+                                            function deleteCarte(carteId) {
+                                                if (confirm('Êtes-vous sûr de vouloir supprimer cette carte ?')) {
+                                                    window.location.href = '{{ path('delete_carte', {'id': '__carte_id__'}) }}'.replace('__carte_id__', carteId);
+                                                }
+                                            }
+                                        </script>
+                                        <button type="button" class="btn btn-warning" onclick="window.location.href = '{{ path('update_carte', {'id': carte.getId}) }}'"> Modifier </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+        </main>
+        
+    </div>
 </div>
 {% endblock %}
-
+ 
 {% block javascripts %}
-   
 
 {% endblock %}

@@ -7,7 +7,7 @@ use App\Repository\CarteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CarteRepository::class)]
 class Carte
 {
@@ -20,34 +20,41 @@ class Carte
     // private ?int $num_carte = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom de la carte ne peut pas être vide')]
     private ?string $carte_nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'La categorie de la carte ne peut pas être vide')]
     private ?string $carte_categorie = null;
 
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $carte_attribut = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'image de la carte ne peut pas être vide')]
     private ?string $carte_image = null;
 
     #[ORM\Column(length: 255)]
     private ?string $carte_type = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Type(type: 'integer', message: 'La valeur doit être un entier ou null')]
     private ?int $carte_niveau = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $carte_specificite = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $carte_ATK = null;
-
-    #[ORM\Column(nullable: true)]
+    #[Assert\Type(type: 'integer', message: 'La valeur doit être un entier ou null')]
     private ?int $carte_DEF = null;
 
-   #[ORM\Column(length: 200000, nullable: true)]
+    #[ORM\Column(length: 200000, nullable: true)]
     private ?string $carte_description = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Assert\Type(type: 'integer', message: 'La valeur doit être un entier ou null')]
+    private ?int $carte_ATK = null;
+
     /**
      * @ORM\OneToMany(targetEntity=CarteEdition::class, mappedBy="carte", cascade={"remove"})
      */
@@ -74,21 +81,6 @@ class Carte
     {
         return $this->id;
     }
-
-    
-
-    // public function getNumCarte(): ?int
-    // {
-    //     return $this->num_carte;
-    // }
-
-    // public function setNumCarte(int $num_carte): static
-    // {
-    //     $this->num_carte = $num_carte;
-
-    //     return $this;
-    // }
-
     public function getCarteNom(): ?string
     {
         return $this->carte_nom;
