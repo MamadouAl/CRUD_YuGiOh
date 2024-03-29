@@ -27,11 +27,11 @@ class CartePossedeeController extends AbstractController
         $nbCartePiege = 0;
         foreach ($cartes as $carte) {
             if ($carte->getCarte()->getCarteCategorie() == 'Magie') {
-                $nbCarteMagie++;
+                $nbCarteMagie+=$carte->getQuantite();
             } elseif ($carte->getCarte()->getCarteCategorie() == 'Monstre') {
-                $nbCarteMonstre++;
+                $nbCarteMonstre+=$carte->getQuantite();
             } elseif ($carte->getCarte()->getCarteCategorie() == 'Piège') {
-                $nbCartePiege++;
+                $nbCartePiege+=$carte->getQuantite();
             }
         }
 
